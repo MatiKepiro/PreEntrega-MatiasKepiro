@@ -1,67 +1,147 @@
-// Constante de un "array" para guardar todas las canciones.
-const playlist = []
+// Array Principal
+let playlist = []
 
-// Variable de bandera para condicion del ciclo "while".
-let bandera = true
+// Variables
+let numeroDeCanciones = 0, bandera = true, nombreDeCancion, existe, nombre
 
 
-// Funcion para agregar una cancion a la playlist mediante un "prompt".
-const agregarCancion = () => {
-    const cancion = prompt("Nombre de cancion: ")
-    playlist.push(cancion)
-}
-
-// Funcion para eliminaar una cancion de la playlist, chequeando mediante un ciclo "for of" si está o no dentro del array.
-const eliminarCancion = () => {
-    const nombreCancion = prompt("Nombre de cancion: ")
-    let existe = false
-    for (cancion of playlist) {
-        if (cancion.toLowerCase() === nombreCancion.toLowerCase()) {
-            playlist.splice(playlist.indexOf(nombreCancion), 1)
-            existe = true
+// Funcion para sincronizar el array con el Local Storage
+const recuperarPlaylist = () => {
+    // Vacio el array
+    playlist = []
+    numeroDeCanciones = 0
+    // Ciclo for que itera sobre la longitud del Local Storage y va agregando los elementos ya almacenados anteriormente
+    for (let i = 1; i <= localStorage.length + 1; i++) {
+        // Variable para conseguir el nombre de la cancion
+        nombre = localStorage.getItem("Cancion " + i)
+        // En caso de eliminar un elemento (que apareceria como null), simplemente lo salteamos y seguimos iterando el proximo elemento
+        if (nombre !== null) {
+            // Metodo push para agregar el elemento al array
+            numeroDeCanciones++
+            playlist.push({numero: numeroDeCanciones, nombre: nombre})
         }
     }
-    // Condicional "if", si existe la cancion, se elimina de la playlist. Si no existe la cancion, muestra un mensaje avisando que no se encuentra dentro de la playlist.
-    if (existe) {
-        alert("Cancion eliminada!")
+    // Invoco a la funcion para actualizar el Local Storage
+    limpiarStorage(playlist)
+}
+
+
+// Funcion para limpiar y volver a almacenar los elementos que se encuentran dentro del array
+const limpiarStorage = (array) => {
+    localStorage.clear()
+    for (const i of array) {
+        localStorage.setItem("Cancion " + i.numero, i.nombre)
+    }
+}
+
+// Condicional para verificar si el Local Storage esta vacio o no. Si lo esta, no invocamos la funcion.
+if (localStorage.length > 0) {
+    recuperarPlaylist()
+}
+
+
+
+// Funcion para agregar una cancion al array
+// Parametros: (numero de la ultima cancion, nombre de la cancion a agregar)
+const agregarCancion = (numero, cancion) => {
+    // Agregamos +1 para sumar una cancion
+    numeroDeCanciones++
+    // Agrega el elemento al array
+    playlist.push({numero: numero + 1, nombre: cancion})
+    // Agrega el elemento al Local Storage
+    localStorage.setItem("Cancion " + numeroDeCanciones, cancion)
+}
+
+
+// Funcion para Eliminar Cancion (en esta se me complico mucho, por el tema que lo elimina pero lo deja como null...)
+// Parametros: (nombre de la cancion, array donde almacena las canciones)
+const eliminarCancion = (cancion, array) => {
+    // Metodo .find() para buscar el objeto dentro del array. Comparandolo con la cancion ingresada por el usuario
+    let objeto = array.find(el => ((el.nombre).toLowerCase() === cancion.toLowerCase()))
+    // Agarramos unicamente el numero del objeto (key)
+    let numeroDeCancion = objeto.numero
+    // Eliminamos el elemento del Local Storage
+    localStorage.removeItem("Cancion " + numeroDeCancion)
+    // Actualizamos el array para descartar el objeto eliminado
+    recuperarPlaylist()
+}
+
+
+
+// Contenedor Princial
+const divContenedorPricipal = document.createElement("div")
+const titulo = document.createElement("h1")
+const botonDarkMode = document.createElement("div")
+const contenedorSecundario = document.createElement("h2")
+
+// Asociamos los nodos hijos con el padre (divContenedorPricipal)
+divContenedorPricipal.appendChild(titulo)
+divContenedorPricipal.appendChild(botonDarkMode)
+divContenedorPricipal.appendChild(contenedorSecundario)
+
+
+// div contenedor
+const contenedor = document.getElementById("contenedor")
+contenedor.appendChild(divContenedorPricipal)
+
+
+// Fondo
+const fondoPrincipal = document.getElementById("fondo")
+
+
+
+// Titulo Principal
+titulo.innerText = "Simulador de Playlist"
+titulo.classList.add("titulo")
+
+
+
+// Boton Dark Mode
+botonDarkMode.innerHTML = "<input type='button' value='Dark Mode'>"
+botonDarkMode.addEventListener("click", respuestaClick = () => {
+    fondo.classList.toggle("black")
+    titulo.classList.toggle("textWhite")
+    contenedorSecundario.classList.toggle("textWhite")
+})
+
+
+// Mi Playlist: + Botones de "Agregar" y "Eliminar"
+contenedorSecundario.innerHTML = "Mi Playlist: <br><input id='botonAgregar'type='button' value='Agregar'><br><input id='botonEliminar'type='button' value='Eliminar'>"
+const botonAgregar = document.getElementById("botonAgregar")
+const botonEliminar = document.getElementById("botonEliminar")
+
+// Evento Boton "Agregar"
+botonAgregar.addEventListener("click", respuestaClick = () => {
+    
+    // Condicional para ver si quiere agregar una cancion mas
+    if (confirm("Desea agregar una cancion?")) {
+        // Pedimos el nombre de la cancion mediante un "prompt"
+        nombreDeCancion = prompt("Nombre de la cancion:")
+        // Condicional para chequear si existe la cancion.
+        // Si existe muestra un mensaje que avisa que ya estaba agregada.
+        if (playlist.find(el => ((el.nombre).toLowerCase() === nombreDeCancion.toLowerCase()))) {
+            alert("Ya ha sido agregada anteriormente!")
+        }
+        // Si no existe, la agrega al array y al localStorage
+        else {
+            agregarCancion(numeroDeCanciones, nombreDeCancion)
+            alert("Cancion agregada!")
+        }
+    }
+})
+
+
+// Evento Boton "Eliminar"
+botonEliminar.addEventListener("click", respuestaClick = () => {
+    // Pedimos el nombre mediante un "prompt"
+    nombreDeCancionAEliminar = prompt("Nombre de cancion:")
+    // Condicional para chequear la igualdad entre la cancion ingresada por el usuario y las canciones almacenadas en el array
+    if (playlist.find(el => ((el.nombre).toLowerCase() === nombreDeCancionAEliminar.toLowerCase()))) {
+        // Invocamos la funcion para eliminar la cancion y mostramos un mensaje
+        eliminarCancion(nombreDeCancionAEliminar, playlist)
+        alert("Cancion eliminada")
     } else {
-        alert("No se encuentra esa cancion...")
+        // En caso contrario, muestra un mensaje de advertencia
+        alert("No existe esa cancion dentro de la Playlist")
     }
-}
-
-
-// Mensaje de Bienvenida.
-const nombrePlaylist = prompt("Hola, te damos la bienvenida al Simulador de Playlist!\nPara empezar, pongamosle un nombre a tu Playlist: ")
-alert("Playlist " + nombrePlaylist + " creada!")
-
-// Pregunta para agregar canciones. Mediante un confirm, validamos si quiere o no, agregar una cancion.
-if (confirm("Desea agregar alguna cancion?")) {
-    agregarCancion()
-    alert("Cancion agregada!")
-    // Ciclo while para seguir preguntando las opciones.
-    while (bandera) {
-        // Switch para tener distintas respuestas a cada opcion
-        switch (Number(prompt("Que desea hacer?\n1. Agregar otra cancion.\n2. Eliminar una cancion.\n3. Salir."))) {
-            case 1:
-                alert("Bien, agreguemos otra cancion a tu Playlist!")
-                agregarCancion()
-                alert("Cancion agregada!")
-                break;
-            case 2:
-                alert("Bien, vamos a eliminar una cancion")
-                eliminarCancion()   
-                break;
-            case 3:
-                alert("Playlist " + nombrePlaylist + " finalizada.\nPor consola mostraremos los resultados!")
-                console.table(playlist)
-                bandera = false
-                break;
-            default:
-                alert("Esa opcion no existe, simulacion terminada.")
-                bandera = false
-                break;
-        }
-    }
-} else {
-    alert("Que pena, la Playlist quedo vacia...")
-}
+})
