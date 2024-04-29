@@ -1,12 +1,179 @@
-.black {
-    background-color: rgb(0, 0, 0);
+
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Playfair Display";
+    background-color: #f4f4f4;
+    background-image: url("https://i.pinimg.com/originals/da/00/58/da0058f1a903ce6c8839f2877fc1e788.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
 }
 
-.titulo {
-    font-size: 3rem;
-    font-family:'Times New Roman', Times, serif;
+h1{ 
+    text-align: center;
+    font-size: 4rem;
+    color: #000000;
+    text-transform: uppercase;
+    -webkit-text-stroke: 1px #F5F5DC;
 }
 
-.textWhite {
-    color: rgb(255, 255, 255);
+#main{
+    display: flex;
+    flex-direction:row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 60%;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    gap: 2px;
 }
+
+.contenedorImagen{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 300px;
+    height: 400px;
+    margin: 10px;
+    border-radius: 50px;
+    overflow: hidden;
+    position: relative;
+    background-color: 	#F5F5DC;
+    border-style: solid;
+    padding: 20px;
+}
+
+img{
+    width: 300px;
+    height: 400px;
+    border-radius: 50px;
+    object-fit: cover;
+    object-position: center;
+    overflow: hidden;
+
+}
+
+#colorBoton{
+    background-color: #51ff00;
+}
+
+button{
+    margin-top: 10px;
+    width: 100%;
+    padding: 10px;
+    font-weight:600;
+    background-color: #ff0000;
+    color: #000000;
+    border: solid;
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: 10px;
+}
+
+h3{
+    font-family: "Playfair Display";
+    font-size: 1.5rem;
+    text-align: center;
+    margin: 10px 0;
+}
+
+.nombre{
+    font-size: 2rem;
+    width: 100%;
+    text-align: center;
+}
+
+p{
+    text-align: end;
+    margin: 10px 0;
+}
+
+.autor{
+    font-size: 1.2rem;
+    text-align: center;
+    text-decoration-line: underline;
+    margin: 10px 0;
+}
+
+.set{
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: #F5F5DC;
+    color: #ffffff;
+    border-radius: 50%;
+    border-style: solid;
+    border-color: #000000;
+    cursor: pointer;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;    
+    align-items: center;
+}
+
+.set img{
+    background-color: #F5F5DC;
+    border-radius: 0;
+    width: 60px;
+    height: 60px;
+}
+
+
+.setFisico{
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: #F5F5DC;
+    color: #000000;
+    border-style: solid;
+    border-color: #000000;
+    width: 350px;
+    height: 100%;
+    transform: translatey(100%);
+    transition: transform 0.5s;
+    z-index: 1;
+}
+
+.setFisico.active{
+    transform: translatey(0);
+}
+
+.setFisico h2{
+    text-align: center;
+    font-size: 2rem;
+    margin: 20px 0;
+}
+
+#borrar{
+    background-color: #51ff00;
+    color: #000000;
+    border: solid;
+    padding: 10px;
+    cursor: pointer;
+}
+
+
+.nombreCancion{
+    font-size: 1.5rem;
+    text-align: start;
+    margin: 10px 0;
+}
+
+.cancionEnSet{
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    padding: 15px;
+    border-bottom: 2px solid #000000;
+}
+
+.cantidad{
+    font-size: x-large;    
+}
+
+

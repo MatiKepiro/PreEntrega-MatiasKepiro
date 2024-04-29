@@ -1,0 +1,44 @@
+{
+    "canciones": [
+        {
+            "nombre": "Cicatrices",
+            "autor": "Airbag",
+            "imagen": "https://iconape.com/wp-content/files/xc/296040/png/airbag-logo.png"
+        }, 
+        {
+            "nombre": "El Favor",
+            "autor": "Las Pastillas del Abuelo",
+            "imagen": "https://i.pinimg.com/originals/bf/3a/0c/bf3a0cccabfe126bc008861b8dec018e.jpg"
+        },
+        {
+            "nombre": "Tu Amor",
+            "autor": "Charly Garcia",
+            "imagen": "https://cloud10.todocoleccion.online/reproducciones-carteles/tc/2023/10/02/19/435902067_tcimg_2B8ADE7A.jpg"
+        },
+        {
+            "nombre": "Yegua",
+            "autor": "Babasonicos",
+            "imagen": "https://i0.wp.com/elplanetaurbano.com/wp-content/uploads/2022/04/pastedImage.png?resize=1250%2C781&ssl=1"
+        },
+        {
+            "nombre": "Ella",
+            "autor": "Tan Bionica",
+            "imagen": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgjrzi7PIUY8gNdyPso7D5ngnDp92ALx7Xff39Mx2waB2wqgNVXBb_XcbXJSZcmA84PQH7x9hRR_Vf-jNj2IYzM4XHO7wwSS_ZLisOe5cugsImckKL2ah9ebm1hw6MXx-18hB7ziNYauknP/s1600/Obsesionario.jpg"
+        },
+        {
+            "nombre": "Vas a Bailar",
+            "autor": "Ciro y los Persas",
+            "imagen": "https://d22fxaf9t8d39k.cloudfront.net/8399ad9987d7f335f3a4fa0a57507c4ee7f3ccdc4b9631f228d1bb322e4699c134375.png"
+        },
+        {
+            "nombre": "Deja Vu",
+            "autor": "Gustavo Cerati",
+            "imagen": "https://www.rockandpop.cl/wp-content/uploads/2018/11/1470959133_210866_1470959174_noticia_normal.jpg" 
+        },
+        {
+            "nombre": "Rezo por Vos",
+            "autor": "Luis Alberto Spinetta",
+            "imagen": "https://i.seadn.io/gae/W-OeeeqGIbXP8v5C9_i5WEJ86eFZazpYVkKdNbi04C0zws48MbOkm1LPehWbUYuamYOfrOqwTRY-CJ2FMVbd3Mc2wWcV9HX87mZAVQ?auto=format&dpr=1&w=1000"
+        }
+    ]
+}
