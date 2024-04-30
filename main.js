@@ -80,7 +80,7 @@ function crearTarjetaDeCancion({nombre, autor, imagen}) {
 }
 
 // Buscamos todos los datos necesarios del archivo .json para poder crear cada tarjeta de las canciones
-fetch("info.json")
+fetch("./info.json")
 .then(datos => {
     if(!datos.ok) {
         // Si tira algun error, lo mostramos
