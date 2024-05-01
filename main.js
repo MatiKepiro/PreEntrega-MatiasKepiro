@@ -79,29 +79,40 @@ function crearTarjetaDeCancion({nombre, autor, imagen}) {
     `
 }
 
+fetch("./info.json")
+.then(res => res.json())
+.then (info => {
+    info.canciones.forEach(e => {
+        crearTarjetaDeCancion(e)
+    })
+})
+
+
+/*
 // Buscamos todos los datos necesarios del archivo .json para poder crear cada tarjeta de las canciones
 fetch("./info.json")
-.then(datos => {
-    if(!datos.ok) {
-        // Si tira algun error, lo mostramos
-        throw new Error("Error al traer los datos")
-    } 
-    // Si todo esta ok, me retorna los datos del .json
-    else {
-        return datos.json()
-    }
-})
-.then(elementos => {
-    // Metodo .forEach para poder crear cada tarjeta con cada cancion
-    elementos.canciones.forEach(elemento => {
-        crearTarjetaDeCancion(elemento)
-    });
-    agregarEvento()
-})
-// Si hay algun error, lo atrapa y lo muestra
-.catch(e => {
-    console.error("Hubo un error al operar el fetch " + e.message)
-})
+    .then(datos => {
+        if(!datos.ok) {
+            // Si tira algun error, lo mostramos
+            throw new Error("Error al traer los datos")
+        } 
+        // Si todo esta ok, me retorna los datos del .json
+        else {
+            return datos.json()
+        }
+    })
+    .then(elementos => {
+        // Metodo .forEach para poder crear cada tarjeta con cada cancion
+        elementos.canciones.forEach(elemento => {
+            crearTarjetaDeCancion(elemento)
+        });
+        agregarEvento()
+    })
+    // Si hay algun error, lo atrapa y lo muestra
+    .catch(e => {
+        console.error("Hubo un error al operar el fetch " + e.message)
+    })
+    */
 
 
 // Mostramos el Set de Playlist
